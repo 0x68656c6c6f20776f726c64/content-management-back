@@ -15,6 +15,7 @@ const Imagestorage = multer.diskStorage({
 });
 
 router.post('/upload', upload);
+// router.put('/update/:id',update);
 router.get('/:id', getById);
 router.delete('/:id', _delete);
 
@@ -51,13 +52,30 @@ function upload(req,res,next)
         }else{
             let fileParam = req.file;
             Object.assign(fileParam,{fileId:req.query.fileId});
-            fileService.create(fileParam)
-            .then(
-                result=>res.json({result,fileParam})
-            )
-            .catch(err => 
-                next(err)
-            );
+            if(req.query.status=='create')
+            {
+                fileService.create(fileParam)
+                .then(
+                    result=>res.json({result,fileParam})
+                )
+                .catch(err => 
+                    next(err)
+                );
+            }
+            else if(req.query.status=='update')
+            {
+                fileService.updateById(fileParam)
+                .then(
+                    result=>res.json({result,fileParam})
+                )
+                .catch(err => 
+                    next(err)
+                );
+            }
+            else
+            {
+                res.json({result:{message:'status error failed'},fileParam:null})
+            }
         }
     })   
 }
