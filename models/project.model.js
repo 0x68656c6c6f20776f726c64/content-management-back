@@ -9,7 +9,7 @@ const schema = new Schema({
     category: { type: String, required: true },
     hot:{type: Boolean, default: false},
     disabled: { type: Boolean, default: true},
-    image:{type:String,default:app_settings.api_Url+'/pictures/default'},
+    image:{type:String,default:'default'},
     description:{type:String,default:""},
     content:{type:String,default:"<p></p>"},
     projectFlow:[

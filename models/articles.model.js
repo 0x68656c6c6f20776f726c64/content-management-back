@@ -8,7 +8,7 @@ const schema = new Schema({
     subtitle: { type: String, required: true },
     category: { type: String, required: true },
     disabled: { type: Boolean, default: true},
-    image:{type:String,default:app_settings.api_Url+'/pictures/default'},
+    image:{type:String,default:'default'},
     description:{type:String,default:""},
     content:{type:String,default:"<p></p>"}
 });
